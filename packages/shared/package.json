@@ -1,0 +1,25 @@
+{
+  "name": "@supabase/auth-ui-shared",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "lint": "tsc"
+  },
+  "devDependencies": {
+    "@supabase/supabase-js": "^2.21.0",
+    "tsup": "^6.6.3"
+  },
+  "peerDependencies": {
+    "@supabase/supabase-js": "^2.21.0"
+  }
+}

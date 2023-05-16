@@ -1,0 +1,30 @@
+{
+  "name": "supabase-auth-ui",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build --filter=@supabase/*",
+    "build:react": "turbo run build --filter=@supabase/auth-ui-react",
+    "build:solid": "turbo run build --filter=@supabase/auth-ui-solid",
+    "build:svelte": "turbo run build --filter=@supabase/auth-ui-svelte",
+    "build:examples": "turbo run build --filter=@examples/*",
+    "build:example:react": "turbo run build --filter=@examples/react",
+    "build:example:solid": "turbo run build --filter=@examples/solid",
+    "build:example:svelte": "turbo run build --filter=@examples/svelte",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean:all": "turbo run clean:all",
+    "ci:version": "changeset version",
+    "ci:release": "changeset publish"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.8",
+    "eslint": "^8.40.0",
+    "turbo": "^1.9.3"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=7.0.0"
+  },
+  "packageManager": "pnpm@7.1.7"
+}
