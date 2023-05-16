@@ -2,7 +2,10 @@
 	import { Auth } from '$lib/index.js';
 	import { createClient } from '@supabase/supabase-js';
 
-	const supabaseClient = createClient('https://localhost:54321', 'asd');
+	const supabaseClient = createClient(
+		import.meta.env.VITE_SUPABASE_URL,
+		import.meta.env.VITE_SUPABASE_KEY
+	);
 </script>
 
 <svelte:head>

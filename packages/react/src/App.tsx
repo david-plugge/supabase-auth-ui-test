@@ -3,11 +3,14 @@ import { Auth } from './lib';
 import { createClient } from '@supabase/supabase-js';
 
 function App() {
-  const client = createClient('https://localhost:54321', '123');
+  const supabaseClient = createClient(
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_KEY
+  );
 
   return (
     <main>
-      <Auth supabaseClient={client} theme={ThemeSupa.default}></Auth>
+      <Auth supabaseClient={supabaseClient} theme={ThemeSupa.default}></Auth>
     </main>
   );
 }
