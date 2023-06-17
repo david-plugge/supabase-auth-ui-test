@@ -1,9 +1,5 @@
-import Auth from './Auth';
+'use client';
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Auth></Auth>
-    </main>
-  );
+	return <h1 className="text-center text-4xl">Supabase Auth UI for React</h1>;
 }

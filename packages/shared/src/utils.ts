@@ -1,3 +1,50 @@
+import { Provider } from '@supabase/supabase-js';
+import { AuthConfig } from './types';
+
+type Fetch = typeof fetch;
+
+interface GoTrueAuthConfiguration {
+	external?: Record<Provider | 'email', boolean>;
+	disable_signup?: boolean;
+	mailer_autoconfirm?: boolean;
+	phone_autoconfirm?: boolean;
+	sms_provider?: string;
+	mfa_enabled?: boolean;
+	saml_enabled?: boolean;
+}
+
+export async function getAuthConfig(
+	supabaseUrl: string,
+	supabaseKey: string,
+	{
+		fetch: _fetch = fetch
+	}: {
+		fetch?: Fetch;
+	} = {}
+): Promise<AuthConfig> {
+	return _fetch(`${supabaseUrl}/auth/v1/settings`, {
+		headers: {
+			apikey: supabaseKey,
+			Accept: 'application/json'
+		}
+	})
+		.then((res) => res.json() as GoTrueAuthConfiguration)
+		.then(({ external = {}, ...rest }) => {
+			const { email, ...social } = external;
+
+			const providers = Object.entries(social)
+				.filter(([_, enabled]) => enabled)
+				.map(([name]) => name as Provider);
+
+			return {
+				email_enabled: email,
+				providers,
+				...rest
+			} as AuthConfig;
+		})
+		.catch(() => ({}));
+}
+
 function value(src: any, next: any) {
   let k: PropertyKey;
   if (src && next && typeof src === 'object' && typeof next === 'object') {

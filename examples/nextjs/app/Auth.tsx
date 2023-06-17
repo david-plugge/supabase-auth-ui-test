@@ -1,14 +1,45 @@
 'use client';
 import '@supabase/auth-ui-react/style.css';
 
-import { createClient } from '@supabase/supabase-js';
-import { Auth } from '@supabase/auth-ui-react';
+import { supabaseClient } from '@/db';
+import {
+	SupabaseContextProvider,
+	AuthConfig,
+	SupabaseDarkTheme,
+	SupabaseTheme,
+} from '@supabase/auth-ui-react';
+import { PropsWithChildren } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default () => {
-  const supabaseClient = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-    process.env.NEXT_PUBLIC_SUPABASE_KEY as string
-  );
+export function AuthProvider({
+	children,
+	config,
+}: PropsWithChildren<{
+	config: AuthConfig;
+}>) {
+	const router = useRouter();
 
-  return <Auth supabaseClient={supabaseClient}></Auth>;
-};
+	return (
+		<SupabaseContextProvider
+			config={config}
+			supabaseClient={supabaseClient}
+			appearence={{
+				theme: {
+					...SupabaseTheme,
+					...SupabaseDarkTheme,
+				},
+			}}
+			navigate={({ path }) => router.push(path)}
+			paths={{
+				sign_in: '/auth/signin',
+				sign_up: '/auth/signup',
+				magic_link: '/auth/magiclink',
+				forgotten_password: '/auth/forgotten-password',
+				update_password: '/auth/update-password',
+				verify_otp: '/auth/verify-otp',
+			}}
+		>
+			{children}
+		</SupabaseContextProvider>
+	);
+}

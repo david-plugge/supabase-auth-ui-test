@@ -18,9 +18,9 @@
     "ci:release": "changeset publish"
   },
   "devDependencies": {
+    "eslint": "^8.43.0",
     "prettier": "^2.8.8",
-    "eslint": "^8.40.0",
-    "turbo": "^1.9.3"
+    "turbo": "^1.10.3"
   },
   "engines": {
     "node": ">=16.0.0",

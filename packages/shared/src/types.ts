@@ -1,76 +1,42 @@
-import { EmailOtpType, MobileOtpType, Provider } from '@supabase/supabase-js';
-import { ThemeVariables } from './theming';
-import { SOCIAL_LAYOUTS, VIEWS } from './constants';
+import type { EmailOtpType, MobileOtpType, Provider } from '@supabase/supabase-js';
+import type { ThemeVariables } from './theming';
 
-export type SocialLayoutType = (typeof SOCIAL_LAYOUTS)[keyof typeof SOCIAL_LAYOUTS];
-export type ViewType = (typeof VIEWS)[keyof typeof VIEWS];
+export type SocialLayout = 'horizontal' | 'vertical';
+export type AuthViewType =
+	| 'sign_in'
+	| 'sign_up'
+	| 'magic_link'
+	| 'forgotten_password'
+	| 'update_password'
+	| 'verify_otp';
 
 export type RedirectTo = undefined | string;
 export type OtpType = EmailOtpType | MobileOtpType;
 
 export type ProviderScopes = {
-  [key in Partial<Provider>]: string;
+	[Key in Provider]?: string;
 };
 
-export interface Theme {
-  default: ThemeVariables;
-  [key: string]: ThemeVariables;
+export interface AuthConfig {
+	providers?: Provider[];
+	providerScopes?: ProviderScopes;
+	providerQueryParams?: Record<string, string>;
+
+	disable_signup?: boolean;
+	mailer_autoconfirm?: boolean;
+	phone_autoconfirm?: boolean;
+	mfa_enabled?: boolean;
+	saml_enabled?: boolean;
+	email_enabled?: boolean;
+	magic_link_enabled?: boolean;
+
+	additionalData?: Record<string, string>;
+	redirectTo?: RedirectTo;
 }
 
-export type I18nVariables = {
-  sign_up?: {
-    email_label?: string;
-    password_label?: string;
-    email_input_placeholder?: string;
-    password_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-    social_provider_text?: string;
-    link_text?: string;
-    confirmation_text?: string;
-  };
-  sign_in?: {
-    email_label?: string;
-    password_label?: string;
-    email_input_placeholder?: string;
-    password_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-    social_provider_text?: string;
-    link_text?: string;
-  };
-  magic_link?: {
-    email_input_label?: string;
-    email_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-    link_text?: string;
-    confirmation_text?: string;
-  };
-  forgotten_password?: {
-    email_label?: string;
-    password_label?: string;
-    email_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-    link_text?: string;
-    confirmation_text?: string;
-  };
-  update_password?: {
-    password_label?: string;
-    password_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-    confirmation_text?: string;
-  };
-  verify_otp?: {
-    email_input_label?: string;
-    email_input_placeholder?: string;
-    phone_input_label?: string;
-    phone_input_placeholder?: string;
-    token_input_label?: string;
-    token_input_placeholder?: string;
-    button_label?: string;
-    loading_button_label?: string;
-  };
-};
+export type ViewPaths = Record<AuthViewType, string>;
+
+export interface Appearence {
+	theme: ThemeVariables;
+	socialLayout?: SocialLayout;
+}
