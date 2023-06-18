@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getSupabaseContext } from '../SupabaseProvider.svelte';
-	import Theme from '../Theme.svelte';
 	import SocialAuth from '../interfaces/SocialAuth.svelte';
 	import {
 		Button,
@@ -9,7 +8,8 @@
 		Label,
 		Message,
 		AuthLink,
-		Divider
+		Divider,
+		Card
 	} from '../components/index.js';
 
 	export let redirectTo: string | undefined = undefined;
@@ -56,7 +56,7 @@
 	}
 </script>
 
-<Theme>
+<Card>
 	{#if disable_signup}
 		<Message>Signup is disabled.</Message>
 	{:else}
@@ -110,7 +110,7 @@
 			</form>
 		{/if}
 	{/if}
-</Theme>
+</Card>
 
 <style>
 	form {

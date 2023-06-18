@@ -6,11 +6,11 @@
 		Input,
 		Label,
 		Message,
-		AuthLink
+		AuthLink,
+		Card
 	} from '$lib/components/index.js';
 	import type { RedirectTo } from '@supabase/auth-ui-shared';
 	import { getSupabaseContext } from '../SupabaseProvider.svelte';
-	import Theme from '../Theme.svelte';
 	import SocialAuth from '../interfaces/SocialAuth.svelte';
 
 	const {
@@ -43,7 +43,7 @@
 	}
 </script>
 
-<Theme>
+<Card>
 	{#if providers?.length}
 		<SocialAuth {redirectTo} />
 
@@ -85,7 +85,7 @@
 			</Container>
 		</form>
 	{/if}
-</Theme>
+</Card>
 
 <style>
 	form {

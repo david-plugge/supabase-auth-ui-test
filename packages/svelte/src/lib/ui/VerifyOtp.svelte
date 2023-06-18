@@ -1,9 +1,7 @@
 <script lang="ts">
-	import Theme from '../Theme.svelte';
-
 	import type { EmailOtpType, MobileOtpType, VerifyOtpParams } from '@supabase/supabase-js';
 	import type { OtpType, RedirectTo } from '@supabase/auth-ui-shared';
-	import { Button, Container, Input, Label, Message, AuthLink } from '../components/index.js';
+	import { Button, Container, Input, Label, Message, AuthLink, Card } from '../components/index.js';
 	import { getSupabaseContext } from '../SupabaseProvider.svelte';
 
 	const {
@@ -49,7 +47,7 @@
 	}
 </script>
 
-<Theme>
+<Card>
 	<form id="auth-magic-link" method="post" on:submit|preventDefault={handleSubmit}>
 		<Container direction="vertical" gap="large">
 			{#if ['sms', 'phone_change'].includes(otpType)}
@@ -111,7 +109,7 @@
 			{/if}
 		</Container>
 	</form>
-</Theme>
+</Card>
 
 <style>
 	form {

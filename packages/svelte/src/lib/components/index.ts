@@ -7,3 +7,4 @@ export { default as Label } from './Label.svelte';
 export { default as Loader } from './Loader.svelte';
 export { default as Message } from './Message.svelte';
 export { default as AuthLink } from './AuthLink.svelte';
+export { default as Card } from './Card.svelte';

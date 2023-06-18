@@ -4,7 +4,6 @@
 	import type { User } from '@supabase/supabase-js';
 	import Container from '../components/Container.svelte';
 	import Button from '../components/Button.svelte';
-	import Theme from '../Theme.svelte';
 	import { fly } from 'svelte/transition';
 
 	const { supabaseClient } = getSupabaseContext();
@@ -27,48 +26,46 @@
 	});
 </script>
 
-<Theme>
-	<div class="wrapper">
-		<button on:click={() => (open = !open)}>
-			<img
-				width="36"
-				height="36"
-				src={user?.user_metadata.avatar_url ?? user?.user_metadata.picture}
-				alt="Profile"
-			/>
-		</button>
+<div class="wrapper">
+	<button on:click={() => (open = !open)}>
+		<img
+			width="36"
+			height="36"
+			src={user?.user_metadata.avatar_url ?? user?.user_metadata.picture}
+			alt="Profile"
+		/>
+	</button>
 
-		{#if open}
-			<div transition:fly={{ duration: 200, y: 10 }} class="userprofile">
-				{#if user}
-					<Container direction="vertical">
-						<Container gap="large">
-							<img
-								width="48"
-								height="48"
-								src={user.user_metadata.avatar_url ?? user.user_metadata.picture}
-								alt="Profile"
-							/>
-							<Container direction="vertical" gap="none">
-								<span class="user_name"
-									>{user.user_metadata.full_name ??
-										user.user_metadata.name ??
-										user.user_metadata.preferred_username ??
-										user.user_metadata.username}</span
-								>
-								<span class="user_login">{user.email}</span>
-							</Container>
+	{#if open}
+		<div transition:fly={{ duration: 200, y: 10 }} class="userprofile">
+			{#if user}
+				<Container direction="vertical">
+					<Container gap="large">
+						<img
+							width="48"
+							height="48"
+							src={user.user_metadata.avatar_url ?? user.user_metadata.picture}
+							alt="Profile"
+						/>
+						<Container direction="vertical" gap="small">
+							<span class="user_name"
+								>{user.user_metadata.full_name ??
+									user.user_metadata.name ??
+									user.user_metadata.preferred_username ??
+									user.user_metadata.username}</span
+							>
+							<span class="user_login">{user.email}</span>
 						</Container>
-
-						<Button on:click={signout}>Sign out</Button>
 					</Container>
-				{:else}
-					<p>Log in to see your profile</p>
-				{/if}
-			</div>
-		{/if}
-	</div>
-</Theme>
+
+					<Button on:click={signout}>Sign out</Button>
+				</Container>
+			{:else}
+				<p>Log in to see your profile</p>
+			{/if}
+		</div>
+	{/if}
+</div>
 
 <style>
 	.wrapper {
@@ -79,7 +76,7 @@
 	.userprofile {
 		border: 1px solid #eee;
 		background-color: #fff;
-		box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+		box-shadow: 0 10px 15px -3px var(--brand);
 		padding: 1rem;
 		border-radius: 1rem;
 		position: absolute;

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getSupabaseContext } from '../SupabaseProvider.svelte';
-	import Theme from '../Theme.svelte';
 	import SocialAuth from '../interfaces/SocialAuth.svelte';
 	import {
 		Button,
@@ -9,7 +8,8 @@
 		Label,
 		Message,
 		AuthLink,
-		Divider
+		Divider,
+		Card
 	} from '../components/index.js';
 	import type { RedirectTo } from '@supabase/auth-ui-shared';
 
@@ -43,7 +43,7 @@
 	}
 </script>
 
-<Theme>
+<Card>
 	{#if providers?.length}
 		<SocialAuth {redirectTo} />
 
@@ -101,7 +101,7 @@
 			</Container>
 		</form>
 	{/if}
-</Theme>
+</Card>
 
 <style>
 	form {

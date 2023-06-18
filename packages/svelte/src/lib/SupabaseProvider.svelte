@@ -40,6 +40,7 @@
 
 	import type { SupabaseClient } from '@supabase/supabase-js';
 	import { createEventDispatcher, getContext, setContext } from 'svelte';
+	import Theme from './Theme.svelte';
 
 	export let supabaseClient: SupabaseClient;
 	export let appearence: Partial<Appearence> = {};
@@ -82,4 +83,6 @@
 	});
 </script>
 
-<slot />
+<Theme>
+	<slot />
+</Theme>

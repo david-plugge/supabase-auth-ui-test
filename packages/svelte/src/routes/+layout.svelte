@@ -70,4 +70,7 @@
 		justify-content: space-between;
 		align-items: center;
 	}
+	span {
+		margin-right: 0.5em;
+	}
 </style>
