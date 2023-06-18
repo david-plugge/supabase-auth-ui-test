@@ -2,12 +2,7 @@
 import '@supabase/auth-ui-react/style.css';
 
 import { supabaseClient } from '@/db';
-import {
-	SupabaseContextProvider,
-	AuthConfig,
-	SupabaseDarkTheme,
-	SupabaseTheme,
-} from '@supabase/auth-ui-react';
+import { SupabaseContextProvider, AuthConfig, SupabaseDarkTheme } from '@supabase/auth-ui-react';
 import { PropsWithChildren } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -24,10 +19,7 @@ export function AuthProvider({
 			config={config}
 			supabaseClient={supabaseClient}
 			appearence={{
-				theme: {
-					...SupabaseTheme,
-					...SupabaseDarkTheme,
-				},
+				theme: SupabaseDarkTheme,
 			}}
 			navigate={({ path }) => router.push(path)}
 			paths={{

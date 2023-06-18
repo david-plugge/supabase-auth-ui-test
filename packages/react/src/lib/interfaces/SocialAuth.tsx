@@ -21,7 +21,7 @@ function SocialAuth({ redirectTo }: { redirectTo?: RedirectTo }) {
 		const { error } = await supabaseClient.auth.signInWithOAuth({
 			provider,
 			options: {
-				redirectTo,
+				redirectTo: redirectTo ?? _redirectTo,
 				scopes: providerScopes?.[provider],
 				queryParams: providerQueryParams,
 			},
@@ -39,7 +39,7 @@ function SocialAuth({ redirectTo }: { redirectTo?: RedirectTo }) {
 		providers?.length > 0 && (
 			<Container direction={socialLayout} gap={socialLayout === 'vertical' ? 'small' : 'medium'}>
 				{providers.map((provider: Provider) => {
-					// @ts-ignore
+					// @ts-expect-error ignore this
 					const AuthIcon = SocialIcons[provider] as () => JSX.Element;
 					return (
 						<Button

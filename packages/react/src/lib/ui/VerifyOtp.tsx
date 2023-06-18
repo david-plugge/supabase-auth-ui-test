@@ -31,7 +31,7 @@ export default function VerifyOtp({
 		setMessage('');
 		setLoading(true);
 
-		let verifyOpts: VerifyOtpParams = ['sms', 'phone_change'].includes(otpType)
+		const verifyOpts: VerifyOtpParams = ['sms', 'phone_change'].includes(otpType)
 			? {
 					phone,
 					token,
@@ -95,11 +95,14 @@ export default function VerifyOtp({
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setToken(e.target.value)}
 						/>
 					</div>
+
 					<Button color="primary" type="submit" loading={loading}>
 						{loading ? labels?.loading_button_label : labels?.button_label}
 					</Button>
 
-					<AuthLink view="sign_in"></AuthLink>
+					<Container direction="vertical" gap="small">
+						<AuthLink view="sign_in"></AuthLink>
+					</Container>
 
 					{message && <Message>{message}</Message>}
 					{error && <Message color="danger">{error}</Message>}

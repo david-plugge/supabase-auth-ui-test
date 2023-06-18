@@ -2,7 +2,7 @@ import { RedirectTo } from '@supabase/auth-ui-shared';
 import { useSupabaseContext } from '../SupabaseProvider';
 import Theme from '../Theme';
 import { SocialAuth } from '../interfaces';
-import { Button, Container, Input, Label, Message, AuthLink } from '../components';
+import { Button, Container, Input, Label, Message, AuthLink, Divider } from '../components';
 import { useState } from 'react';
 
 export default function MagicLink({ redirectTo }: { redirectTo?: RedirectTo }) {
@@ -35,7 +35,12 @@ export default function MagicLink({ redirectTo }: { redirectTo?: RedirectTo }) {
 
 	return (
 		<Theme>
-			{providers?.length && <SocialAuth redirectTo={redirectTo} />}
+			{providers?.length && (
+				<>
+					<SocialAuth redirectTo={redirectTo} />
+					{magic_link_enabled && <Divider />}
+				</>
+			)}
 			{magic_link_enabled && (
 				<form method="post" id="auth-magic-link" onSubmit={handleMagicLinkSignIn}>
 					<Container gap="large" direction="vertical">
@@ -48,13 +53,16 @@ export default function MagicLink({ redirectTo }: { redirectTo?: RedirectTo }) {
 								autoFocus
 								placeholder={labels?.email_input_placeholder}
 								onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+								defaultValue={email}
 							/>
 						</div>
 						<Button color="primary" type="submit" loading={loading}>
 							{loading ? labels?.loading_button_label : labels?.button_label}
 						</Button>
 
-						<AuthLink view="sign_in"></AuthLink>
+						<Container direction="vertical" gap="small">
+							<AuthLink view="sign_in"></AuthLink>
+						</Container>
 
 						{message && <Message>{message}</Message>}
 						{error && <Message color="danger">{error}</Message>}

@@ -48,11 +48,14 @@ export default function UpdatePassword({ redirectTo }: { redirectTo?: RedirectTo
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
 						/>
 					</div>
+
 					<Button type="submit" color="primary" loading={loading}>
 						{loading ? labels?.loading_button_label : labels?.button_label}
 					</Button>
 
-					<AuthLink view="sign_in"></AuthLink>
+					<Container direction="vertical" gap="small">
+						<AuthLink view="sign_in"></AuthLink>
+					</Container>
 
 					{message && <Message>{message}</Message>}
 					{error && <Message color="danger">{error}</Message>}

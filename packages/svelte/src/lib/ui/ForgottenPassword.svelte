@@ -32,25 +32,25 @@
 <Theme>
 	<form id="auth-forgot-password" method="post" on:submit|preventDefault={handleSubmit}>
 		<Container direction="vertical" gap="large">
-			<Container direction="vertical" gap="large">
-				<div>
-					<Label for="email">{i18n?.forgotten_password?.email_label}</Label>
-					<Input
-						id="email"
-						type="email"
-						name="email"
-						autofocus
-						placeholder={i18n?.forgotten_password?.email_input_placeholder}
-						bind:value={email}
-						autocomplete="email"
-					/>
-				</div>
-				<Button type="submit" color="primary" {loading}>
-					{i18n?.forgotten_password?.button_label}
-				</Button>
-			</Container>
+			<div>
+				<Label for="email">{i18n?.forgotten_password?.email_label}</Label>
+				<Input
+					id="email"
+					type="email"
+					name="email"
+					autofocus
+					placeholder={i18n?.forgotten_password?.email_input_placeholder}
+					bind:value={email}
+					autocomplete="email"
+				/>
+			</div>
+			<Button type="submit" color="primary" {loading}>
+				{i18n?.forgotten_password?.button_label}
+			</Button>
 
-			<AuthLink view="sign_in" />
+			<Container direction="vertical" gap="small">
+				<AuthLink view="sign_in" />
+			</Container>
 
 			{#if message}
 				<Message>

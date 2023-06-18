@@ -1,5 +1,14 @@
 <script lang="ts">
-	import { Button, Container, Input, Label, Message, AuthLink } from '$lib/components/index.js';
+	import {
+		Button,
+		Container,
+		Divider,
+		Input,
+		Label,
+		Message,
+		AuthLink
+	} from '$lib/components/index.js';
+	import type { RedirectTo } from '@supabase/auth-ui-shared';
 	import { getSupabaseContext } from '../SupabaseProvider.svelte';
 	import Theme from '../Theme.svelte';
 	import SocialAuth from '../interfaces/SocialAuth.svelte';
@@ -10,8 +19,9 @@
 		config: { email_enabled = true, providers, redirectTo: _redirectTo }
 	} = getSupabaseContext();
 
-	export let redirectTo: string | undefined = _redirectTo;
+	export let redirectTo: RedirectTo = _redirectTo;
 
+	const labels = i18n.magic_link;
 	let email = '';
 	let message = '';
 	let error = '';
@@ -28,7 +38,7 @@
 			}
 		});
 		if (resetPasswordError) error = resetPasswordError.message;
-		else message = i18n.magic_link?.confirmation_text as string;
+		else message = labels?.confirmation_text as string;
 		loading = false;
 	}
 </script>
@@ -36,40 +46,41 @@
 <Theme>
 	{#if providers?.length}
 		<SocialAuth {redirectTo} />
+
+		{#if email_enabled}
+			<Divider />
+		{/if}
 	{/if}
 
 	{#if email_enabled}
 		<form id="auth-magic-link" method="post" on:submit|preventDefault={handleSubmit}>
 			<Container direction="vertical" gap="large">
-				<Container direction="vertical" gap="large">
-					<div>
-						<Label for="email">{i18n?.magic_link?.email_input_label}</Label>
-						<Input
-							id="email"
-							type="email"
-							name="email"
-							autofocus
-							placeholder={i18n?.magic_link?.email_input_placeholder}
-							bind:value={email}
-							autocomplete="email"
-						/>
-					</div>
-					<Button type="submit" color="primary" {loading}>
-						{i18n?.magic_link?.button_label}
-					</Button>
+				<div>
+					<Label for="email">{labels?.email_input_label}</Label>
+					<Input
+						id="email"
+						type="email"
+						name="email"
+						autofocus
+						placeholder={labels?.email_input_placeholder}
+						bind:value={email}
+						autocomplete="email"
+					/>
+				</div>
+
+				<Button type="submit" color="primary" {loading}>
+					{loading ? labels?.loading_button_label : labels?.button_label}
+				</Button>
+
+				<Container direction="vertical" gap="small">
+					<AuthLink view="sign_in" />
 				</Container>
 
-				<AuthLink view="sign_in" />
-
 				{#if message}
-					<Message>
-						{message}
-					</Message>
+					<Message>{message}</Message>
 				{/if}
 				{#if error}
-					<Message color="danger">
-						{error}
-					</Message>
+					<Message color="danger">{error}</Message>
 				{/if}
 			</Container>
 		</form>

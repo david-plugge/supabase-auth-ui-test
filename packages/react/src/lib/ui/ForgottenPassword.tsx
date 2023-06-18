@@ -46,6 +46,7 @@ export default function ForgottenPassword({ redirectTo }: { redirectTo?: Redirec
 							onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
 						/>
 					</div>
+
 					<Button type="submit" color="primary" loading={loading}>
 						{loading ? labels?.loading_button_label : labels?.button_label}
 					</Button>

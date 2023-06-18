@@ -23,7 +23,7 @@ export const SupabaseTheme: ThemeVariables = {
 		messageText: 'gray',
 		messageTextDanger: 'red',
 		anchorTextColor: 'gray',
-		anchorTextHoverColor: 'darkgray'
+		anchorTextHoverColor: 'darkgray',
 	},
 	space: {
 		spaceSmall: '4px',
@@ -34,19 +34,19 @@ export const SupabaseTheme: ThemeVariables = {
 		emailInputSpacing: '4px',
 		socialAuthSpacing: '4px',
 		buttonPadding: '10px 15px',
-		inputPadding: '10px 15px'
+		inputPadding: '10px 15px',
 	},
 	fontSizes: {
 		baseBodySize: '13px',
 		baseInputSize: '14px',
 		baseLabelSize: '14px',
-		baseButtonSize: '14px'
+		baseButtonSize: '14px',
 	},
 	fonts: {
 		bodyFontFamily: `ui-sans-serif, sans-serif`,
 		buttonFontFamily: `ui-sans-serif, sans-serif`,
 		inputFontFamily: `ui-sans-serif, sans-serif`,
-		labelFontFamily: `ui-sans-serif, sans-serif`
+		labelFontFamily: `ui-sans-serif, sans-serif`,
 	},
 	// fontWeights: {},
 	// lineHeights: {},
@@ -54,21 +54,23 @@ export const SupabaseTheme: ThemeVariables = {
 	// sizes: {},
 	borderWidths: {
 		buttonBorderWidth: '1px',
-		inputBorderWidth: '1px'
+		inputBorderWidth: '1px',
 	},
 	// borderStyles: {},
 	radii: {
 		borderRadiusButton: '4px',
 		buttonBorderRadius: '4px',
-		inputBorderRadius: '4px'
-	}
+		inputBorderRadius: '4px',
+	},
 	// shadows: {},
 	// zIndices: {},
 	// transitions: {},
 };
 
 export const SupabaseDarkTheme: ThemeVariables = {
+	...SupabaseTheme,
 	colors: {
+		...SupabaseTheme.colors,
 		brandButtonText: 'white',
 		defaultButtonBackground: '#2e2e2e',
 		defaultButtonBackgroundHover: '#3e3e3e',
@@ -80,8 +82,8 @@ export const SupabaseDarkTheme: ThemeVariables = {
 		inputBorderHover: 'gray',
 		inputBorderFocus: 'gray',
 		inputText: 'white',
-		inputPlaceholder: 'darkgray'
-	}
+		inputPlaceholder: 'darkgray',
+	},
 };
 
 export const MinimalTheme: ThemeVariables = {
@@ -96,22 +98,22 @@ export const MinimalTheme: ThemeVariables = {
 		inputBackground: 'transparent',
 		inputBorder: 'lightgray',
 		inputText: 'black',
-		inputPlaceholder: 'darkgray'
+		inputPlaceholder: 'darkgray',
 	},
 	space: {
 		spaceSmall: '4px',
 		spaceMedium: '8px',
-		spaceLarge: '16px'
+		spaceLarge: '16px',
 	},
 	fontSizes: {
 		baseInputSize: '14px',
-		baseLabelSize: '12px'
+		baseLabelSize: '12px',
 	},
 	fonts: {
 		bodyFontFamily: '',
 		inputFontFamily: '',
 		buttonFontFamily: '',
-		labelFontFamily: ''
+		labelFontFamily: '',
 		// linkFontFamily: '',
 	},
 	// fontWeights: {},
@@ -120,14 +122,16 @@ export const MinimalTheme: ThemeVariables = {
 	// sizes: {},
 	borderWidths: {},
 	// borderStyles: {},
-	radii: {}
+	radii: {},
 	// shadows: {},
 	// zIndices: {},
 	// transitions: {},
 };
 
 export const MinimalDarkTheme: ThemeVariables = {
+	...MinimalTheme,
 	colors: {
+		...MinimalTheme.colors,
 		brand: 'white',
 		brandAccent: '#afafaf',
 		brandButtonText: 'black',
@@ -138,6 +142,6 @@ export const MinimalDarkTheme: ThemeVariables = {
 		inputBackground: 'transparent',
 		inputBorder: 'gray',
 		inputText: 'black',
-		inputPlaceholder: 'darkgray'
-	}
+		inputPlaceholder: 'darkgray',
+	},
 };

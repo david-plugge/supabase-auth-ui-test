@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { OtpType, AuthViewType } from '$lib/shared';
 	import ForgottenPassword from './ui/ForgottenPassword.svelte';
 	import MagicLink from './ui/MagicLink.svelte';
 	import UpdatePassword from './ui/UpdatePassword.svelte';
 	import VerifyOtp from './ui/VerifyOtp.svelte';
 	import Signin from './ui/Signin.svelte';
 	import Signup from './ui/Signup.svelte';
+	import type { AuthViewType, OtpType } from '@supabase/auth-ui-shared';
 
 	export let view: AuthViewType = 'sign_in';
 	export let otpType: OtpType = 'email';

@@ -2,7 +2,7 @@
 	import '../app.css';
 	import { goto, invalidateAll } from '$app/navigation';
 	import { supabaseClient } from '../db.js';
-	import { SupabaseDarkTheme, SupabaseProvider, SupabaseTheme } from '$lib/index.js';
+	import { SupabaseDarkTheme, SupabaseProvider } from '$lib/index.js';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -28,10 +28,7 @@
 	config={data.settings}
 	{supabaseClient}
 	appearence={{
-		theme: {
-			...SupabaseTheme,
-			...SupabaseDarkTheme
-		}
+		theme: SupabaseDarkTheme
 	}}
 	paths={{
 		sign_in: '/auth/signin',

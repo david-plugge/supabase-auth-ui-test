@@ -90,11 +90,14 @@
 					autocomplete="token"
 				/>
 			</div>
+
 			<Button type="submit" color="primary" {loading}>
 				{i18n?.verify_otp?.button_label}
 			</Button>
 
-			<AuthLink view="sign_in" />
+			<Container direction="vertical" gap="small">
+				<AuthLink view="sign_in" />
+			</Container>
 
 			{#if message}
 				<Message>

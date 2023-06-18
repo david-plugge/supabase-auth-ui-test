@@ -39,27 +39,28 @@
 <Theme>
 	<form id="auth-update-password" method="post" on:submit|preventDefault={handleSubmit}>
 		<Container direction="vertical" gap="large">
-			<Container direction="vertical" gap="large">
-				<div>
-					<Label for="password">
-						{i18n?.update_password?.password_label}
-					</Label>
-					<Input
-						id="password"
-						type="password"
-						name="password"
-						autofocus
-						placeholder={i18n?.update_password?.password_label}
-						bind:value={password}
-						autocomplete="password"
-					/>
-				</div>
-				<Button type="submit" color="primary" {loading}>
-					{i18n?.update_password?.button_label}
-				</Button>
-			</Container>
+			<div>
+				<Label for="password">
+					{i18n?.update_password?.password_label}
+				</Label>
+				<Input
+					id="password"
+					type="password"
+					name="password"
+					autofocus
+					placeholder={i18n?.update_password?.password_label}
+					bind:value={password}
+					autocomplete="password"
+				/>
+			</div>
 
-			<AuthLink view="sign_in" />
+			<Button type="submit" color="primary" {loading}>
+				{i18n?.update_password?.button_label}
+			</Button>
+
+			<Container direction="vertical" gap="small">
+				<AuthLink view="sign_in" />
+			</Container>
 
 			{#if message}
 				<Message>
